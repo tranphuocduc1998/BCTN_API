@@ -1,4 +1,6 @@
 module.exports = {
+    "MONGO_ADMIN": "health-care",
+    "MONGO_PASS": "abc1234",
     "Port": 3030,
     "type": "service_account",
     "project_id": "api-ai-hnioee",
