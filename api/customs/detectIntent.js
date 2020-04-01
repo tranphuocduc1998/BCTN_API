@@ -59,16 +59,23 @@ module.exports.updateContext = function (intentResponse) {
 
 module.exports.payloadHandler = function (intentResponse) {
     const { payload } = intentResponse.queryResult.fulfillmentMessages[0];
-    const model = payload.fields.model;
-    if (model) {
-        return {
-            type: payload.fields.type.stringValue,
-            voice: payload.fields.voice.stringValue,
-            model: payload.fields.model.stringValue,
-        };
-    }
-    return {
+    const { model, voice } = payload.fields;
+
+    let response = {
         type: payload.fields.type.stringValue,
-        voice: payload.fields.voice.stringValue,
-    };
+    }
+
+    if (intentResponse.queryResult.fulfillmentMessages.length >= 2) {
+        const { text } = intentResponse.queryResult.fulfillmentMessages[1];
+        response.bonus = text.text[0];
+    }
+
+    if (voice) {
+        response.voice = voice.stringValue;
+    }
+
+    if (model) {
+        response.model = model.stringValue;
+    }
+    return response;
 }
