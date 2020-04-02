@@ -58,18 +58,18 @@ module.exports.modelHandle = async function (payload) {
                 voice: 'Tổng mức dinh dưỡng của món ăn bạn đã tiêu thụ vào cơ thể.',
                 Data: {
                     number: 1,
-                    typeFood: typeFood,
-                    imageUrl: imageUri,
-                    name: name,
-                    nutrition: [`kcal: ${calo * number} calo`, `Chất đạm: ${protein * number} g`, `Chất béo: ${fat * number} g`, `Tinh bột: ${carb * number} g`, `Chất xơ: ${fiber * number} g`],
+                    typeFood: healthFoods[0].typeFood,
+                    imageUrl: healthFoods[0].imageUri,
+                    name: healthFoods[0].name,
+                    nutrition: [`kcal: ${healthFoods[0].calo} calo`, `Chất đạm: ${healthFoods[0].protein} g`, `Chất béo: ${healthFoods[0].fat} g`, `Tinh bột: ${healthFoods[0].carb} g`, `Chất xơ: ${healthFoods[0].fiber} g`],
                 },
                 addFood: {
-                    name: name,
-                    carb: carb,
-                    fiber: fiber,
-                    fat: fat,
-                    protein: protein,
-                    calo: calo,
+                    name: healthFoods[0].name,
+                    carb: healthFoods[0].carb,
+                    fiber: healthFoods[0].fiber,
+                    fat: healthFoods[0].fat,
+                    protein: healthFoods[0].protein,
+                    calo: healthFoods[0].calo,
                     _v: 1
                 }
             }

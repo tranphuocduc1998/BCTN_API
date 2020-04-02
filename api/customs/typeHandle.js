@@ -94,7 +94,7 @@ module.exports.typeHandle = async function (payload, healthCare, ListHealthFoods
                 response = execBMI(healthCare.height, healthCare.weight);
             }
             break;
-            
+
         case "Nutrition":
             if (healthCare.height === 0 && healthCare.weight === 0) {
                 response = {
@@ -112,9 +112,15 @@ module.exports.typeHandle = async function (payload, healthCare, ListHealthFoods
                     voice: "Bạn cần cung cấp thêm cân nặng của bạn",
                 }
             } else {
-                response = execNutrition(healthCare.height, healthCare.weight, ListHealthFoods);
+                response = execNutrition(healthCare, ListHealthFoods);
             }
             break;
+
+        case "GoogleMap":
+            response = {
+                type: type,
+                voice: voice,
+            }
 
         default:
 

@@ -8,11 +8,12 @@ const { detectPayloadIntent, updateContext, payloadHandler, typeHandle } = requi
 
 let context;
 let healthCare = {
-    height: 160,
-    weight: 74,
+    increaseKg: 0,
+    dropKg: 0,
+    height: 0,
+    weight: 0,
 };
 let ListHealthFoods = [
-    { name: "Phở gà", carb: 59.3, fiber: 0.5, fat: 17.9, protein: 21.3, calo: 483, _v: 3 },
 ];
 
 //GET

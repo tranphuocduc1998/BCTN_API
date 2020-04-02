@@ -79,7 +79,9 @@ module.exports.execBMI = function (height, weight) {
     return response;
 }
 
-module.exports.execNutrition = function (height, weight, ListHealthFoods) {
+module.exports.execNutrition = function (healthCare, ListHealthFoods) {
+    const { increaseKg, dropKg, height, weight } = healthCare;
+
     const BMR = (9.99 * weight) + (6.25 * height) - (4.92 * 22) + 5;
     const TDEE = BMR * 1.55;
     let sumKcal = TDEE;
@@ -87,11 +89,10 @@ module.exports.execNutrition = function (height, weight, ListHealthFoods) {
     let sumFat = 0.25 * TDEE;
     let sumFiber = 12 * (sumKcal / 1000);
     let sumCarb = (TDEE - (sumProtein + sumFat)) / 4;
-    let sumWater = sumKcal / 1000;
     let sumKcalAdded = sumProteinAdded = sumFatAdded = sumFiberAdded = sumCarbAdded = 0;
-    let sumWaterAdded = 1; //Chưa thêm
     let percentKcalAdded = percentProteinAdded = percentFatAdded = percentFiberAdded = percentCarbAdded = 0;
     let voice = "Bạn chưa ăn gì hôm nay. Mức độ dinh dưỡng hôm nay";
+
     if (ListHealthFoods.length >= 1) {
         voice = "Hôm nay bạn đã ăn";
         ListHealthFoods.forEach(element => {
@@ -122,8 +123,7 @@ module.exports.execNutrition = function (height, weight, ListHealthFoods) {
             { _id: '2', title: `Chất đạm/ngày: ${sumProtein.toFixed(2)} g`, added: `${sumProteinAdded.toFixed(2)} g`, percentAdded: percentProteinAdded <= 100 ? percentProteinAdded : 100 },
             { _id: '3', title: `Chất béo/ngày: ${sumFat.toFixed(2)} g`, added: `${sumFatAdded.toFixed(2)} g`, percentAdded: percentFatAdded <= 100 ? percentFatAdded : 100 },
             { _id: '4', title: `Tinh bột/ngày: ${sumCarb.toFixed(2)} g`, added: `${sumCarbAdded.toFixed(2)} g`, percentAdded: percentCarbAdded <= 100 ? percentCarbAdded : 100 },
-            { _id: '5', title: `Chất xơ/ngày: ${sumFiber.toFixed(2)} g`, added: `${sumFiberAdded.toFixed(2)} g`, percentAdded: percentFiberAdded <= 100 ? percentFiberAdded : 100 },
-            { _id: '6', title: `Nước/ngày: ${sumWater.toFixed(2)} lít`, added: `${sumWaterAdded.toFixed(2)} lít`, percentAdded: ((sumWaterAdded / sumWater) * 100) }
+            { _id: '5', title: `Chất xơ/ngày: ${sumFiber.toFixed(2)} g`, added: `${sumFiberAdded.toFixed(2)} g`, percentAdded: percentFiberAdded <= 100 ? percentFiberAdded : 100 }
         ],
     }
     return response;
