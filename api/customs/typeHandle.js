@@ -117,10 +117,8 @@ module.exports.typeHandle = async function (payload, healthCare, ListHealthFoods
             break;
 
         case "GoogleMap":
-            response = {
-                type: type,
-                voice: voice,
-            }
+            payload.model = "foodStore";
+            response = await modelHandle(payload);
 
         default:
 

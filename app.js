@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 //import module Routes
-const { indexRoute, healthAdviceRoute, healthFoods } = require('./api/imports/routes');
+const { indexRoute, healthAdviceRoute, healthFoods, foodStore } = require('./api/imports/routes');
 
 //import module other
 const { MONGO_ADMIN, MONGO_PASS } = require('./environment');
@@ -23,6 +23,7 @@ app.use(bodyParser.json());
 app.use('/ai', indexRoute);
 app.use('/healthAdvice', healthAdviceRoute);
 app.use('/healthFoods', healthFoods);
+app.use('/foodStore', foodStore);
 
 //Setting CORS
 app.use((req, res, next) => {

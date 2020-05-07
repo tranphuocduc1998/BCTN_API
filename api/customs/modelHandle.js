@@ -1,5 +1,5 @@
 //import modules
-const { HealthAdvice, HealthFoods } = require('../imports/models');
+const { HealthAdvice, HealthFoods, FoodStore } = require('../imports/models');
 
 //export module
 module.exports.modelHandle = async function (payload) {
@@ -72,6 +72,15 @@ module.exports.modelHandle = async function (payload) {
                     calo: healthFoods[0].calo,
                     _v: 1
                 }
+            }
+            break;
+
+        case "foodStore":
+            const foodStore = await FoodStore.find();
+            response = {
+                type: type,
+                voice: voice,
+                foodStore: foodStore
             }
             break;
 
