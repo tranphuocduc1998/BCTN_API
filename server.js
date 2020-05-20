@@ -5,4 +5,4 @@ const { Port } = require('./environment');
 
 const server = http.createServer(app);
 
-server.listen(Port || 3000);
+server.listen(3030);
