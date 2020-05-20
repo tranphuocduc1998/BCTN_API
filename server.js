@@ -3,6 +3,8 @@ const app = require('./app');
 
 const { Port } = require('./environment');
 
+var port = process.env.PORT || Port;
+
 const server = http.createServer(app);
 
-server.listen(3030);
+server.listen(port);
