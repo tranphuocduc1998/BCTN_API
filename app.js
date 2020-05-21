@@ -18,7 +18,7 @@ const {
 const { MONGO_ADMIN, MONGO_PASS } = require('./environment');
 
 //Connecting MongoDB
-mongoose.connect(`mongodb+srv://health-care:abc1234@healthcareapi-notvf.gcp.mongodb.net/test?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(`mongodb+srv://${MONGO_ADMIN}:${MONGO_PASS}@healthcareapi-notvf.gcp.mongodb.net/test?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
 
 //Setting bodyParser

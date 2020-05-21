@@ -52,8 +52,7 @@ router.get('/', async (req, res, next) => {
 //POST
 router.post('/request', async (req, res, next) => {
     const { query } = req.body;
-    console.log(query);
-    const intentResponse = await detectPayloadIntent(project_id, query, 'en-US', context);
+    const intentResponse = await detectPayloadIntent("api-ai-hnioee", query, 'en-US', context);
     const payload = payloadHandler(intentResponse);
     context = updateContext(intentResponse);
     let response = await typeHandle(payload, healthCare, ListHealthFoods);
