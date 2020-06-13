@@ -6,15 +6,6 @@ const router = express.Router();
 const { project_id } = require('../../environment');
 const { detectPayloadIntent, updateContext, payloadHandler, typeHandle } = require('../imports/customs');
 
-let context;
-let healthCare = {
-    increaseKg: 0,
-    dropKg: 0,
-    height: 0,
-    weight: 0,
-};
-let ListHealthFoods = [
-];
 
 //GET
 router.get('/', async (req, res, next) => {
@@ -51,10 +42,11 @@ router.get('/', async (req, res, next) => {
 
 //POST
 router.post('/request', async (req, res, next) => {
-    const { query } = req.body;
+    const { query, context, ListHealthFoods, healthCare } = req.body;
+    let ListHealthFoodsUpdate = ListHealthFoods;
     const intentResponse = await detectPayloadIntent("api-ai-hnioee", query, 'en-US', context);
     const payload = payloadHandler(intentResponse);
-    context = updateContext(intentResponse);
+    const contextUpdate = updateContext(intentResponse);
     let response = await typeHandle(payload, healthCare, ListHealthFoods);
     let { Data, addFood } = response;
     if (Data) {
@@ -67,16 +59,18 @@ router.post('/request', async (req, res, next) => {
         }
     }
     if (addFood) {
-        const checkFood = ListHealthFoods.find((value) => {
+        const checkFood = ListHealthFoodsUpdate.find((value) => {
             return String(value.name) === String(addFood.name);
         });
         if (checkFood) {
             checkFood._v += addFood._v;
         } else {
-            ListHealthFoods.push(addFood);
+            ListHealthFoodsUpdate.push(addFood);
         }
     }
-
+    response.context = contextUpdate;
+    response.healthCare = healthCare;
+    response.ListHealthFoods = ListHealthFoodsUpdate;
     res.status(200).json(response);
 })
 

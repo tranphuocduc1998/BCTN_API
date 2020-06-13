@@ -6,12 +6,12 @@ const mongoose = require('mongoose');
 const app = express();
 
 //import module Routes
-const { 
-    indexRoute, 
-    healthAdviceRoute, 
-    healthFoods, 
+const {
+    indexRoute,
+    healthAdviceRoute,
+    healthFoods,
     foodStore,
-    menuOfStore 
+    menuOfStore
 } = require('./api/imports/routes');
 
 //import module other

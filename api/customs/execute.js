@@ -5,31 +5,31 @@ module.exports.execBMI = function (height, weight) {
     if (Quetelet < 18.5) {
         response = {
             type: "BMI",
-            voice: "Đây là chỉ số của bạn",
+            voice: "Chỉ số BMI ở trên cho thấy bạn đang bị suy dinh dưỡng!",
             Data: {
                 weight: weight,
                 height: height,
                 BMI: Quetelet,
                 imageUri: "https://media.istockphoto.com/vectors/cartoon-underweight-woman-vector-id511318006?k=6&m=511318006&s=170667a&w=0&h=Rwn8CDE10nIgp9satIWNmIuU8VUFhCPdxsMAiVLkghE=",
-                classify: "Chỉ số BMI ở trên cho thấy bạn bị đang bị suy dinh dưỡng!",
+                classify: "Chỉ số BMI ở trên cho thấy bạn đang bị suy dinh dưỡng!",
             }
         }
     } else if (Quetelet <= 24.9) {
         response = {
             type: "BMI",
-            voice: "Đây là chỉ số của bạn",
+            voice: "Chúc mừng bạn! Bạn có chỉ số BMI bình thường!",
             Data: {
                 weight: weight,
                 height: height,
                 BMI: Quetelet,
-                imageUri: "https://scontent-hkt1-1.xx.fbcdn.net/v/t1.0-9/s960x960/90985065_762115757651924_8954274709214593024_o.jpg?_nc_cat=103&_nc_sid=ca434c&_nc_ohc=jWzOmjyxiHYAX_B4vax&_nc_ht=scontent-hkt1-1.xx&_nc_tp=7&oh=597bde395c931559d91a24b69d9f1ca3&oe=5EA31CF4",
+                imageUri: "https://c.pxhere.com/photos/b5/19/adult_bowl_cute_daylight_eat_eating_healthy_enjoyment_face-1550297.jpg!s",
                 classify: "Chúc mừng bạn! Bạn có chỉ số BMI bình thường!",
             }
         }
     } else if (Quetelet <= 29.9) {
         response = {
             type: "BMI",
-            voice: "Đây là chỉ số của bạn",
+            voice: "Chỉ số BMI ở trên cho thấy bạn bị thừa cân!",
             Data: {
                 weight: weight,
                 height: height,
@@ -41,7 +41,7 @@ module.exports.execBMI = function (height, weight) {
     } else if (Quetelet <= 34.9) {
         response = {
             type: "BMI",
-            voice: "Đây là chỉ số của bạn",
+            voice: "Chỉ số BMI ở trên cho thấy bạn bị béo phì độ 1!",
             Data: {
                 weight: weight,
                 height: height,
@@ -53,7 +53,7 @@ module.exports.execBMI = function (height, weight) {
     } else if (Quetelet <= 39.9) {
         response = {
             type: "BMI",
-            voice: "Đây là chỉ số của bạn",
+            voice: "Chỉ số BMI ở trên cho thấy bạn bị béo phì độ 2!",
             Data: {
                 weight: weight,
                 height: height,
@@ -65,7 +65,7 @@ module.exports.execBMI = function (height, weight) {
     } else if (Quetelet >= 40) {
         response = {
             type: "BMI",
-            voice: "Đây là chỉ số của bạn",
+            voice: "Chỉ số BMI ở trên cho thấy bạn bị béo phì độ 3!",
             Data: {
                 weight: weight,
                 height: height,
@@ -91,7 +91,7 @@ module.exports.execNutrition = function (healthCare, ListHealthFoods) {
     let sumCarb = (TDEE - (sumProtein + sumFat)) / 4;
     let sumKcalAdded = sumProteinAdded = sumFatAdded = sumFiberAdded = sumCarbAdded = 0;
     let percentKcalAdded = percentProteinAdded = percentFatAdded = percentFiberAdded = percentCarbAdded = 0;
-    let voice = "Bạn chưa ăn gì hôm nay. Mức độ dinh dưỡng hôm nay";
+    let voice = "Bạn chưa ăn gì hôm nay. Mức độ dinh dưỡng ngày hôm nay";
 
     if (ListHealthFoods.length >= 1) {
         voice = "Hôm nay bạn đã ăn";
@@ -107,7 +107,7 @@ module.exports.execNutrition = function (healthCare, ListHealthFoods) {
                 voice += ` ${element._v} ${element.name},`;
             }
         });
-        voice += " Mức độ dinh dưỡng hôm nay.";
+        voice += " Mức độ dinh dưỡng ngày hôm nay.";
         percentKcalAdded = ((sumKcalAdded / sumKcal) * 100);
         percentProteinAdded = ((sumProteinAdded / sumProtein) * 100);
         percentFatAdded = ((sumFatAdded / sumFat) * 100);
